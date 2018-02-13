@@ -43,7 +43,7 @@ class TodosContainer extends Component {
     TodoModel.delete(todo)
     .then((res)=> {
         let todos = this.state.todos.filter((todo)=> {
-          return todo._id !== res._id
+          return todo._id !== res._id;
         });
         this.setState({todos});
     })
