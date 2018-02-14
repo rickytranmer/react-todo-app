@@ -5,7 +5,15 @@ class TodoModel {
     let request = $.ajax({
       url: "https://super-crud.herokuapp.com/todos",
       method: 'GET'
-    })
+    });
+    return request;
+  }
+
+  static show(id) {
+    let request = $.ajax({
+      url: `https://super-crud.herokuapp.com/todos/${id}`,
+      method: 'GET'
+    });
     return request;
   }
 
@@ -14,7 +22,7 @@ class TodoModel {
       url: "https://super-crud.herokuapp.com/todos",
       method: 'POST',
       data: todo
-    })
+    });
     return request;
   }
 
@@ -22,7 +30,16 @@ class TodoModel {
     let request = $.ajax({
       url: `https://super-crud.herokuapp.com/todos/${todo._id}`,
       method: 'DELETE'
-    })
+    });
+    return request;
+  }
+
+  static update(todo) {
+    let request = $.ajax({
+      url: `https://super-crud.herokuapp.com/todos/${todo._id}`,
+      method: 'PUT',
+      data: todo
+    });
     return request;
   }
 }

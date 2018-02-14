@@ -10,7 +10,7 @@ class CreateTodoForm extends Component {
   }
 
   onInputChange(event) {
-    console.log('create todo input changed');
+    this.setState({todo: event.target.value});
   }
 
   onFormSubmit(event ){

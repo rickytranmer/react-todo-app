@@ -39,14 +39,32 @@ class TodosContainer extends Component {
   }
 
   deleteTodo(todo) {
-    console.log('deleting todo', todo)
+    console.log('deleting todo', todo);
     TodoModel.delete(todo)
     .then((res)=> {
         let todos = this.state.todos.filter((todo)=> {
           return todo._id !== res._id;
         });
         this.setState({todos});
-    })
+    });
+  }
+
+  updateTodo(updatedBody, todoId) {
+    let todos = this.state.todos;
+    console.log(updatedBody);
+    console.log(todos);
+    console.log(todoId);
+
+    TodoModel.show(todoId)
+    .then((res)=> {
+      let updatedTodo = res;
+      updatedTodo.body = updatedBody;
+      TodoModel.update(updatedTodo)
+      .then((response)=> {
+        console.log(response);
+        this.fetchData();
+      });
+    });
   }
 
   render() {
@@ -56,7 +74,8 @@ class TodosContainer extends Component {
         createTodo={this.createTodo.bind(this)} />
         <TodoList
           todos={this.state.todos}
-          onDeleteTodo={this.deleteTodo.bind(this)} />
+          onDeleteTodo={this.deleteTodo.bind(this)}
+          onUpdateTodo={this.updateTodo.bind(this)} />
       </div>
     );
   }
