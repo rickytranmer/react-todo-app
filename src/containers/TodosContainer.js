@@ -59,6 +59,7 @@ class TodosContainer extends Component {
     .then((res)=> {
       let updatedTodo = res;
       updatedTodo.body = updatedBody;
+      
       TodoModel.update(updatedTodo)
       .then((response)=> {
         console.log(response);
